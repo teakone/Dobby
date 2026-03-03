@@ -50,7 +50,10 @@ jobs:
     
     - name: compile android
       run: |
-        python3 scripts/platform_builder.py --platform=android --arch=all --cmake_dir=$HOME/opt/cmake-$CMAKE_VERSION --llvm_dir=$HOME/opt/llvm-$LLVM_VERSION --android_ndk_dir=$HOME/opt/ndk-$NDK_VERSION
+        python3 scripts/platform_builder.py --platform=android --arch=arm64 --cmake_dir=$HOME/opt/cmake-$CMAKE_VERSION --llvm_dir=$HOME/opt/llvm-$LLVM_VERSION --android_ndk_dir=$HOME/opt/ndk-$NDK_VERSION
+        python3 scripts/platform_builder.py --platform=android --arch=arm --cmake_dir=$HOME/opt/cmake-$CMAKE_VERSION --llvm_dir=$HOME/opt/llvm-$LLVM_VERSION --android_ndk_dir=$HOME/opt/ndk-$NDK_VERSION
+        
+        mkdir -p build/android
         cp include/dobby.h build/android
         tar -zcvf build/dobby-android-all.tar.gz build/android
         cp build/dobby-android-all.tar.gz artifact/
